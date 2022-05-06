@@ -3,14 +3,18 @@ import { IconStyle } from './assets/iconfont/iconfont';
 import { HashRouter } from 'react-router-dom';
 import Routes from './routes';
 import 'lib-flexible'
+import { Provider } from 'react-redux';
+import store from './store/index';
 
 function App() {
   return (
-    <HashRouter>
-      <GlobalStyle></GlobalStyle>
-      <IconStyle></IconStyle>
-      <Routes/>
-    </HashRouter>
+    <Provider store={store}>
+      <HashRouter>
+        <GlobalStyle></GlobalStyle>
+        <IconStyle></IconStyle>
+        <Routes/>
+      </HashRouter>
+    </Provider>
   );
 }
 
