@@ -17,28 +17,6 @@ export const Top = styled.div `
   }
 `
 
-// export const Tab = styled.div `
-//   height: 1.066667rem;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   background-color: ${style['theme-color']};
-// `;
-
-export const TabItem = styled.div `
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`
-  // export const Tab = styled.div `
-  //     height: 1.066667rem;
-  //     display: flex;
-  //     flex-direction: row;
-  //     justify-content: space-between;
-  //     background-color: ${style['theme-color']};
-  //   `;
 export const Tab = styled.div `
   height: 1.066667rem;
   display: flex;
@@ -59,4 +37,12 @@ export const Tab = styled.div `
       }
     }
   }
+`;
+
+export const TabItem = styled.div `
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
