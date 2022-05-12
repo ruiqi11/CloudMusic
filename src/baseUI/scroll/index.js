@@ -123,7 +123,7 @@ const Scroll = forwardRef((props, ref) => {
           // 滚动方向
           scrollX: direction === "horizental",
           scrollY: direction === "vertical",
-          // 有时候我们需要知道滚动的位置。
+          // 滚动的位置。
           // 当 probeType 为 3 的时候，不仅在屏幕滑动的过程中，而且在 momentum 滚动动画运行过程中实时派发 scroll 事件。
           probeType: 3,
           // 支持点击事件
@@ -152,10 +152,10 @@ const Scroll = forwardRef((props, ref) => {
     useEffect(() => {
         if (!bScroll || !onScroll) return;
         bScroll.on('scroll', (scroll) => {
-            onScroll(scroll);
+            onScroll(scroll); //滑动触发的回调函数，传入scroll实例
         })
         return () => {
-            bScroll.off('scroll');
+            bScroll.off('scroll'); // 解除绑定
         }
     }, [onScroll, bScroll]);
 
