@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { connect } from "react-redux";
 // 导入常量
 import * as actionCreaters from './store/actionCreators';
+import {forceCheck} from 'react-lazyload'
 
 
 export const Content = styled.div`
@@ -48,7 +49,7 @@ function Recommend(props) {
   
   return (
     <Content>
-      <Scroll className="list">
+      <Scroll className="list" onScroll={forceCheck}>
         <div>
           <Slider bannerList={bannerListJS}></Slider>
           <List recommendList={recommendListJS}></List>
