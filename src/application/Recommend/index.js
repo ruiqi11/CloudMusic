@@ -7,7 +7,8 @@ import styled from 'styled-components';
 import { connect } from "react-redux";
 // 导入常量
 import * as actionCreaters from './store/actionCreators';
-import {forceCheck} from 'react-lazyload'
+import {forceCheck} from 'react-lazyload';
+import Loading from '../../baseUI/loading/index';
 
 
 export const Content = styled.div`
@@ -35,7 +36,7 @@ function Recommend(props) {
   // });
 
   // 获取数据
-  const { bannerList, recommendList } = props;
+  const { bannerList, recommendList, enterLoading } = props;
   // 把 immutable 数据类型转换为对应的 js 数据类型
   const bannerListJS = bannerList ? bannerList.toJS() : [];
   const recommendListJS = recommendList ? recommendList.toJS() :[];
@@ -45,6 +46,7 @@ function Recommend(props) {
   useEffect(() => {
       getBannerDataDispatch();
       getRecommendListDataDispatch();
+      // eslint-disable-next-line
   }, []);
   
   return (
@@ -55,6 +57,7 @@ function Recommend(props) {
           <List recommendList={recommendListJS}></List>
         </div>
       </Scroll>
+      {enterLoading ? <Loading></Loading> : null}
     </Content>
   )
 }
@@ -65,6 +68,7 @@ const mapStateToProps = (state) => ({
   // 不要再这里将数据toJS,不然每次diff比对props的时候都是不一样的引用，还是导致不必要的重渲染, 属于滥用immutable
   bannerList: state.getIn(['recommend', 'bannerList']),
   recommendList: state.getIn(['recommend','recommendList']),
+  enterLoading: state.getIn(['recommend', 'enterLoading'])
 })
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
@@ -74,8 +78,8 @@ const mapDispatchToProps = (dispatch) => {
     },
     getRecommendListDataDispatch() {
         dispatch(actionCreaters.getRecommendList());
-    },
-}
+    }
+  }
 }
 // 将ui组件包装成容器组件
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Recommend))
