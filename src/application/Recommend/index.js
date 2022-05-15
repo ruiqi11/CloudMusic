@@ -44,9 +44,14 @@ function Recommend(props) {
   const { getBannerDataDispatch, getRecommendListDataDispatch } = props;
 
   useEffect(() => {
+    // 如果页面有数据，则不发出请求，更具immutable数据结构的长度属性size判断
+    if(!bannerList.size) {
       getBannerDataDispatch();
+    }
+    if(!recommendList.size) {
       getRecommendListDataDispatch();
-      // eslint-disable-next-line
+    }
+    // eslint-disable-next-line
   }, []);
   
   return (
